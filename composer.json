@@ -1,0 +1,50 @@
+{
+    "name": "weblabormx/:package_name",
+    "description": ":package_description",
+    "keywords": [
+        "weblabormx",
+        ":package_name"
+    ],
+    "homepage": "https://github.com/weblabormx/:package_name",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": ":author_name",
+            "email": ":author_email",
+            "homepage": "https://weblabor.mx",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WeblaborMX\\Skeleton\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WeblaborMX\\Skeleton\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WeblaborMX\\Skeleton\\SkeletonServiceProvider"
+            ],
+            "aliases": {
+                "Skeleton": "WeblaborMX\\Skeleton\\SkeletonFacade"
+            }
+        }
+    }
+}
