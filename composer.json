@@ -1,16 +1,16 @@
 {
-    "name": "weblabormx/:package_name",
-    "description": ":package_description",
+    "name": "weblabormx/scrapping-plus",
+    "description": "Package for making scrapping with different drivers and one format.",
     "keywords": [
         "weblabormx",
-        ":package_name"
+        "scrapping-plus"
     ],
-    "homepage": "https://github.com/weblabormx/:package_name",
+    "homepage": "https://github.com/weblabormx/scrapping-plus",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Carlos Escobar",
+            "email": "carlosescobar@weblabor.mx",
             "homepage": "https://weblabor.mx",
             "role": "Developer"
         }
@@ -23,28 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "WeblaborMX\\Skeleton\\": "src"
+            "WeblaborMX\\ScrappingPlus\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WeblaborMX\\Skeleton\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "WeblaborMX\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "WeblaborMX\\Skeleton\\SkeletonFacade"
-            }
+            "WeblaborMX\\ScrappingPlus\\Tests\\": "tests"
         }
     }
 }

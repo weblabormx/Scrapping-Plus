@@ -1,12 +1,12 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/weblabormx/:package_name.svg?style=flat-square)](https://packagist.org/packages/weblabormx/:package_name)
-[![Build Status](https://img.shields.io/travis/weblabormx/:package_name/master.svg?style=flat-square)](https://travis-ci.org/weblabormx/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/weblabormx/scrapping-plus.svg?style=flat-square)](https://packagist.org/packages/weblabormx/scrapping-plus)
+[![Build Status](https://img.shields.io/travis/weblabormx/scrapping-plus/master.svg?style=flat-square)](https://travis-ci.org/weblabormx/scrapping-plus)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/xxxxxxxxx.svg?style=flat-square)](https://insight.sensiolabs.com/projects/xxxxxxxxx)
-[![Quality Score](https://img.shields.io/scrutinizer/g/weblabormx/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/weblabormx/:package_name)
-[![Total Downloads](https://img.shields.io/packagist/dt/weblabormx/:package_name.svg?style=flat-square)](https://packagist.org/packages/weblabormx/:package_name)
+[![Quality Score](https://img.shields.io/scrutinizer/g/weblabormx/scrapping-plus.svg?style=flat-square)](https://scrutinizer-ci.com/g/weblabormx/scrapping-plus)
+[![Total Downloads](https://img.shields.io/packagist/dt/weblabormx/scrapping-plus.svg?style=flat-square)](https://packagist.org/packages/weblabormx/scrapping-plus)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
+**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```scrapping-plus``` ```Package for making scrapping with different drivers and one format.``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
@@ -15,13 +15,13 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require weblabormx/:package_name
+composer require weblabormx/scrapping-plus
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new WeblaborMX\Skeleton();
+$skeleton = new WeblaborMX\ScrappingPlus();
 echo $skeleton->echoPhrase('Hello, WeblaborMX!');
 ```
 

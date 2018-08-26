@@ -1,6 +1,6 @@
 <?php
 
-namespace WeblaborMX\Skeleton\Tests;
+namespace WeblaborMX\ScrappingPlus\Tests;
 
 use PHPUnit\Framework\TestCase;
 
