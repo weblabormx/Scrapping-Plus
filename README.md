@@ -1,2 +1,2 @@
 # Scrapping-Plus
-Laravel package for scrapping with different drivers
+Composer package for scrapping with different drivers
