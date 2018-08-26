@@ -38,7 +38,6 @@ class Parser extends DriverFormat
         });
     }
 
-
     // Attributes
 
     public function getHtml() 

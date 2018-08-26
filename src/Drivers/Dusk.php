@@ -3,81 +3,63 @@
 namespace WeblaborMX\ScrappingPlus\Drivers;
 
 use WeblaborMX\ScrappingPlus\DriverFormat;
-use Laravel\Dusk\Browser as DuskBrowser;
-use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
+use WeblaborMX\ScrappingPlus\DuskBrowser;
 
-/**
- * Reporting browser for console commands
- */
 class Dusk extends DriverFormat
 {
-    /**
-     * @var \Laravel\Dusk\Browser
-     */
-    private $browser;
 
-    public function browse(Closure $callback)
+    public $browser;
+    public $object;
+    public $selector;
+
+    public function __construct()
     {
-        if (!$this->browser) {
-            $this->browser = $this->newBrowser($this->createWebDriver());
-        }
-        try {
-            $callback($this->browser);
-        } catch (Exception $e) {
-            throw $e;
-        } catch (Throwable $e) {
-            throw $e;
-        }
+        $this->browser = new DuskBrowser;
     }
 
-    function __destruct()
-    {
-        if ($this->browser) {
-            $this->closeBrowser();
-        }
+    public function setUrl($url) {
+        $this->browser->browse(function ($browpage) use ($url) {
+            $browpage->visit($url);
+            $this->object = $browpage;
+        });
+        return $this;
     }
 
-    protected function closeBrowser()
-    {
-        if (!$this->browser) {
-            throw new Exception("The browser hasn't been initialized yet");
-        }
-
-        $this->browser->quit();
-        $this->browser = null;
+    public function setHtml($html) {
+        $object = new Parser;
+        return $object->setHtml($html, []);
     }
 
-    protected function newBrowser($driver)
+    // Getters 
+
+    public function get($selector) 
     {
-        return new DuskBrowser($driver);
+        return;
     }
 
-    /**
-     * Create the remote web driver instance.
-     *
-     * @return \Facebook\WebDriver\Remote\RemoteWebDriver
-     */
-    protected function createWebDriver()
-    {
-        return retry(5, function () {
-            return $this->driver();
-        }, 50);
+    public function toParser() {
+        return $this->setHtml($this->getHtml());
     }
 
-    protected function driver()
+    // Attributes
+
+    public function getHtml() 
     {
-        $options = new ChromeOptions();
+        return $this->object->driver->getPageSource();
+    }
 
-        $capabilities = DesiredCapabilities::chrome();
-        $capabilities->setCapability(ChromeOptions::CAPABILITY, $options);
-        $driver = RemoteWebDriver::create(
-            'http://localhost:9515', $capabilities,
-            5 * 60 * 1000, // Connection timeout in miliseconds
-            5 * 60 * 1000  // Request timeout in miliseconds
-        );
+    public function getAttribute($name) 
+    {
+        return;
+    }
 
-        return $driver;
+    public function getLink() 
+    {
+        return;
+    }
+
+    public function getText() 
+    {
+        return;
     }
 }
