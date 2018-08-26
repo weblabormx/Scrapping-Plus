@@ -44,6 +44,13 @@ $page->object->waitForText($text); // How to use laravel dusk functions directly
 $page = $page->toParser(); // Convert to the parser driver
 ```
 
+The list of functions that every driver has are the next ones:
+- `get($selector)`
+- `getHtml`
+- `getAttribute($name)`
+- `getLink`
+- `getText`
+
 ### Testing
 
 ``` bash
