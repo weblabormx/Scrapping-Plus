@@ -1,14 +1,13 @@
-# Very short description of the package
+# Scrapping Plus
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/weblabormx/scrapping-plus.svg?style=flat-square)](https://packagist.org/packages/weblabormx/scrapping-plus)
-[![Build Status](https://img.shields.io/travis/weblabormx/scrapping-plus/master.svg?style=flat-square)](https://travis-ci.org/weblabormx/scrapping-plus)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/xxxxxxxxx.svg?style=flat-square)](https://insight.sensiolabs.com/projects/xxxxxxxxx)
-[![Quality Score](https://img.shields.io/scrutinizer/g/weblabormx/scrapping-plus.svg?style=flat-square)](https://scrutinizer-ci.com/g/weblabormx/scrapping-plus)
-[![Total Downloads](https://img.shields.io/packagist/dt/weblabormx/scrapping-plus.svg?style=flat-square)](https://packagist.org/packages/weblabormx/scrapping-plus)
+Laravel package for scrapping with different drivers.
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```scrapping-plus``` ```Package for making scrapping with different drivers and one format.``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
+This package will help you for scrapping any website, even the ones done completly by javascript. This is done thanks the different drivers that handles the scrapping.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+In this package we use the next drivers
+
+- Parser (paquettg/php-html-parser)
+- Laravel Dusk (laravel/dusk)
 
 ## Installation
 
@@ -20,20 +19,36 @@ composer require weblabormx/scrapping-plus
 
 ## Usage
 
+For using the Parser one you need to execute something like this.
+
 ``` php
-$skeleton = new WeblaborMX\ScrappingPlus();
-echo $skeleton->echoPhrase('Hello, WeblaborMX!');
+$google = Scrapping::scrappe('https://www.google.com.mx');
+$html = $google->getHtml();
+
+// Access inputs
+$inputs = $google->get('input');
+$this->assertEquals(5, $inputs->count());
+
+$first = $inputs->first();
+$second = $inputs[1];
+
+$class = $google->first('input[name=btnI]');
+$title = $class->getAttribute('value');
+```
+
+And if you want to execute it with laravel dusk you just need to execute something like this:
+
+```
+$page = Scrapping::method('dusk')->scrappe($url);
+$page->object->waitForText($text); // How to use laravel dusk functions directly
+$page = $page->toParser(); // Convert to the parser driver
 ```
 
 ### Testing
 
 ``` bash
-composer test
+phpunit test
 ```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Contributing
 
@@ -53,7 +68,7 @@ We publish all received emails [on our company website](http://weblabor.mx).
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Carlos Escobar](https://github.com/skalero01)
 - [All Contributors](../../contributors)
 
 ## Support us
