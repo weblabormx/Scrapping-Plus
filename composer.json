@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.1",
         "paquettg/php-html-parser": "dev-dev",
-        "laravel/dusk": "^2.0",
+        "laravel/dusk": "*",
         "illuminate/support": "*"
     },
     "require-dev": {
