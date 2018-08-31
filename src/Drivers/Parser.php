@@ -15,6 +15,9 @@ class Parser extends DriverFormat
     public function setUrl($url) 
     {
         $dom = new Dom;
+        $dom->setOptions([
+            'cleanupInput' => false, // Set a global option to enable strict html parsing.
+        ]);
         $dom->loadFromUrl($url);
         $this->object = $dom;
         return $this;
@@ -22,6 +25,9 @@ class Parser extends DriverFormat
 
     public function setHtml($html) {
         $dom = new Dom;
+        $dom->setOptions([
+            'cleanupInput' => false, // Set a global option to enable strict html parsing.
+        ]);
         $dom->loadStr($html, []);
         $this->object = $dom;
         return $this;
@@ -60,7 +66,7 @@ class Parser extends DriverFormat
 
     public function getText() 
     {
-        return $this->text;
+        return $this->selector->text;
     }
     
 }
