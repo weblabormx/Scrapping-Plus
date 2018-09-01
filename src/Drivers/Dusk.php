@@ -26,7 +26,7 @@ class Dusk extends DriverFormat
     }
 
     public function setHtml($html) {
-        $object = new Parser;
+        $object = new Voku;
         return $object->setHtml($html, []);
     }
 

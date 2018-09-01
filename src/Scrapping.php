@@ -4,7 +4,7 @@ namespace WeblaborMX\ScrappingPlus;
 
 class Scrapping
 {
-    public static $method = 'Parser';
+    public static $method = 'Voku';
 
     static public function method($name) 
     {
