@@ -8,6 +8,7 @@ In this package we use the next drivers
 
 - Parser (paquettg/php-html-parser)
 - Laravel Dusk (laravel/dusk)
+- Voku (voku/simple_html_dom)
 
 ## Installation
 
@@ -22,6 +23,8 @@ composer require weblabormx/scrapping-plus
 For using the Parser one you need to execute something like this.
 
 ``` php
+use WeblaborMX\ScrappingPlus\Scrapping;
+
 $google = Scrapping::scrappe('https://www.google.com.mx');
 $html = $google->getHtml();
 
