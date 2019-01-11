@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "paquettg/php-html-parser": "dev-dev",
+        "paquettg/php-html-parser": "dev-dev@dev",
         "laravel/dusk": "*",
         "illuminate/support": "*",
         "voku/simple_html_dom": "^4.1",
@@ -35,6 +35,5 @@
         "psr-4": {
             "WeblaborMX\\ScrappingPlus\\Tests\\": "tests"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
