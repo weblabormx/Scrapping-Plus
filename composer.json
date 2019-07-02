@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "paquettg/php-html-parser": "dev-dev@dev",
+        "paquettg/php-html-parser": "*",
         "laravel/dusk": "*",
         "illuminate/support": "*",
         "voku/simple_html_dom": "^4.1",
