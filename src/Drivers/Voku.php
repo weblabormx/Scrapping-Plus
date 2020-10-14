@@ -16,14 +16,15 @@ class Voku extends DriverFormat
     {
         $opts = array(
             'http'=>array(
-                'method'=>"GET",
-                'header'=>"Accept-language: en\r\n" .
-                "User-Agent:    Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6\r\n".
-                "Cookie: foo=bar\r\n"
+                'method' =>"GET",
+                'header' =>"Accept-language: en\r\n" .
+                    "User-Agent:    Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6\r\n".
+                    "Cookie: foo=bar\r\n",
+                'timeout' => 60
             )
         );
         $context = stream_context_create($opts);
-        $html = file_get_contents($url, false, $context);
+        $html = @file_get_contents($url, false, $context);
         $this->setHtml($html);
         return $this;
     }
