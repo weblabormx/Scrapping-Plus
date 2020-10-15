@@ -25,6 +25,9 @@ class Voku extends DriverFormat
         );
         $context = stream_context_create($opts);
         $html = @file_get_contents($url, false, $context);
+        if(is_bool($html)) {
+            return;
+        }
         $this->setHtml($html);
         return $this;
     }
