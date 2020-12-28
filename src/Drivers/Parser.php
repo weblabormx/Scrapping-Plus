@@ -5,6 +5,7 @@ namespace WeblaborMX\ScrappingPlus\Drivers;
 use WeblaborMX\ScrappingPlus\DriverFormat;
 use PHPHtmlParser\Dom;
 use Illuminate\Support\Collection;
+use PHPHtmlParser\Options;
 
 class Parser extends DriverFormat
 {
@@ -14,21 +15,15 @@ class Parser extends DriverFormat
 
     public function setUrl($url) 
     {
-        $dom = new Dom;
-        $dom->setOptions([
-            'cleanupInput' => false, // Set a global option to enable strict html parsing.
-        ]);
+        $dom = $this->getDom();
         $dom->loadFromUrl($url);
         $this->object = $dom;
         return $this;
     }
 
     public function setHtml($html) {
-        $dom = new Dom;
-        $dom->setOptions([
-            'cleanupInput' => false, // Set a global option to enable strict html parsing.
-        ]);
-        $dom->loadStr($html, []);
+        $dom = $this->getDom();
+        $dom->loadStr($html);
         $this->object = $dom;
         return $this;
     }
@@ -67,6 +62,17 @@ class Parser extends DriverFormat
     public function getText() 
     {
         return $this->selector->text;
+    }
+
+    private function getDom()
+    {
+        $dom = new Dom;
+        $dom->setOptions(
+            // this is set as the global option level.
+            (new Options())
+                ->setCleanupInput(false) // Set a global option to enable strict html parsing.
+        );
+        return $dom;
     }
     
 }

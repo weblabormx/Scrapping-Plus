@@ -25,6 +25,12 @@ For using the Parser one you need to execute something like this.
 ``` php
 use WeblaborMX\ScrappingPlus\Scrapping;
 
+// Using html directly
+$scrapper = Scrapping::fromHtml('<html><body><h1>Hola</h1><p>Excerpt</p></body></html>');
+$h1 = $scrapper->first('h1');
+$text = $h1->getText(); // Hola
+
+// Get it from an URL
 $google = Scrapping::scrappe('https://www.google.com.mx');
 $html = $google->getHtml();
 
@@ -41,7 +47,7 @@ $title = $class->getAttribute('value');
 
 And if you want to execute it with laravel dusk you just need to execute something like this:
 
-```
+``` php
 $page = Scrapping::method('dusk')->scrappe($url);
 $page->object->waitForText($text); // How to use laravel dusk functions directly
 $page = $page->toParser(); // Convert to the parser driver

@@ -34,7 +34,7 @@ class Dusk extends DriverFormat
 
     public function get($selector) 
     {
-        return;
+        return collect([]);
     }
 
     public function toParser() {
