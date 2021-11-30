@@ -89,10 +89,14 @@ We publish all received emails [on our company website](http://weblabor.mx).
 
 ## Support us
 
-Weblabor is a webdesign agency based in México. You'll find an overview of all our open source projects [on our website](http://weblabor.mx).
+Weblabor is a web design agency based in México. You'll find an overview of all our open source projects [on our website](http://weblabor.mx).
 
-Does your business depend on our contributions? Reach out and support us on [Paypal](http://paypal.me/weblabormx). 
+Does your business depend on our contributions? Reach out and support us
 All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
+
+- Support us on Patreon - https://www.patreon.com/weblabormx
+- Support us with a Paypal donation - https://paypal.me/weblabormx 
+
 
 ## License
 
