@@ -3,11 +3,10 @@
 namespace WeblaborMX\ScrappingPlus\Drivers;
 
 use WeblaborMX\ScrappingPlus\DriverFormat;
-use PHPHtmlParser\Dom;
+use voku\helper\HtmlDomParser;
 use Illuminate\Support\Collection;
-use PHPHtmlParser\Options;
 
-class Parser extends DriverFormat
+class Voku extends DriverFormat
 {
 
     public $object;
@@ -15,15 +14,26 @@ class Parser extends DriverFormat
 
     public function setUrl($url) 
     {
-        $dom = $this->getDom();
-        $dom->loadFromUrl($url);
-        $this->object = $dom;
+        $opts = array(
+            'http'=>array(
+                'method' =>"GET",
+                'header' =>"Accept-language: en\r\n" .
+                    "User-Agent:    Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6\r\n".
+                    "Cookie: foo=bar\r\n",
+                'timeout' => 60
+            )
+        );
+        $context = stream_context_create($opts);
+        $html = @file_get_contents($url, false, $context);
+        if(is_bool($html)) {
+            return;
+        }
+        $this->setHtml($html);
         return $this;
     }
 
     public function setHtml($html) {
-        $dom = $this->getDom();
-        $dom->loadStr($html);
+        $dom = HtmlDomParser::str_get_html($html);
         $this->object = $dom;
         return $this;
     }
@@ -33,7 +43,7 @@ class Parser extends DriverFormat
     public function get($selector) 
     {
         return collect($this->object->find($selector))->map(function($item) {
-            $object = new Parser;
+            $object = new Voku;
             $object->selector = $item;
             return $object->setHtml($item->outerHtml);
         });
@@ -43,7 +53,7 @@ class Parser extends DriverFormat
 
     public function getHtml() 
     {
-        return $this->object->outerHtml;
+        return $this->object->outertext;
     }
 
     public function getAttribute($name) 
@@ -51,7 +61,7 @@ class Parser extends DriverFormat
         if(!isset($this->selector)) {
             return;
         }
-        return $this->selector->getAttribute($name);
+        return $this->selector->$name;
     }
 
     public function getLink() 
@@ -61,18 +71,7 @@ class Parser extends DriverFormat
 
     public function getText() 
     {
-        return $this->selector->text;
-    }
-
-    private function getDom()
-    {
-        $dom = new Dom;
-        $dom->setOptions(
-            // this is set as the global option level.
-            (new Options())
-                ->setCleanupInput(false) // Set a global option to enable strict html parsing.
-        );
-        return $dom;
+        return $this->selector->plaintext;
     }
     
 }

@@ -15,7 +15,7 @@ class BasicTest extends TestCase
 
         // Access inputs
         $inputs = $google->get('input');
-        $this->assertEquals(5, $inputs->count());
+        $this->assertEquals(10, $inputs->count());
 
         $first = $inputs->first();
         $second = $inputs[1];
@@ -37,7 +37,7 @@ class BasicTest extends TestCase
 
         // Access inputs
         $inputs = $google->get('input');
-        $this->assertEquals(9, $inputs->count());
+        $this->assertEquals(8, $inputs->count());
 
         $first = $inputs->first();
         $second = $inputs[1];
@@ -46,33 +46,16 @@ class BasicTest extends TestCase
         $title = $class->getAttribute('value');
 
         $this->assertEquals('Me siento con suerte ', $title);
-    }
-
-    /** @test */
-    public function useOriginalObject()
-    {
-        $page = Scrapping::method('dusk')->scrappe('https://www.ticketmaster.com.mx/Auditorio-Nacional-boletos-Mexico/venue/163841?tm_link=tm_homeA_b_10001_1');
-        $page->object->waitForText('Ver Boletos');
-        $page = $page->toParser();
-        $item = $page->get('table#venue_results_tbl > tbody > tr');
-        $items = $page->get('table#venue_results_tbl');
-
-        $this->assertEquals(15, $item->count());
-
-        $item = $item->first();
-        $link = $item->first('a');
-        var_dump($link->getLink());
     }
 
     /** @test */
     public function parserItsSelectedByDefault()
     {
-        $google = Scrapping::scrappe('https://www.google.com.mx');
-        $html = $google->getHtml();
+        $google = Scrapping::method('Voku')->scrappe('https://www.google.com.mx');
 
         // Access inputs
         $inputs = $google->get('input');
-        $this->assertEquals(5, $inputs->count());
+        $this->assertEquals(7, $inputs->count());
 
         $first = $inputs->first();
         $second = $inputs[1];
@@ -83,4 +66,29 @@ class BasicTest extends TestCase
         $this->assertEquals('Me siento con suerte ', $title);
     }
 
+    /** @test */
+    public function vokuTest()
+    {
+        $google = Scrapping::method('voku')->scrappe('https://www.google.com.mx');
+        $html = $google->getHtml();
+
+        // Access inputs
+        $inputs = $google->get('input');
+
+        $first = $inputs->first();
+        $second = $inputs[1];
+
+        $class = $google->first('input[name=btnI]');
+        $title = $class->getAttribute('value');
+
+        $this->assertEquals('Me siento con suerte ', $title);
+    }
+
+    /** @test */
+    public function fromHtml()
+    {
+        $scrapper = Scrapping::fromHtml('<html><body><h1>Hola</h1><p>Excerpt</p></body></html>');
+        $h1 = $scrapper->first('h1');
+        $this->assertEquals('Hola', $h1->getText());
+    }
 }
